@@ -90,17 +90,24 @@ images.forEach((filename, index) => {
 	`;
 
 	card.addEventListener(
-		"click",
-		() => {
+	"click",
+	() => {
 
-			card.classList.add("opened");
+		card.classList.add("opened");
+
+		const tempImage = new Image();
+
+		tempImage.onload = () => {
 
 			overlayImage.src =
 				imagePath;
 
 			overlay.classList.add("show");
-		}
-	);
+		};
+
+		tempImage.src = imagePath;
+	}
+);
 
 	calendar.appendChild(card);
 });
