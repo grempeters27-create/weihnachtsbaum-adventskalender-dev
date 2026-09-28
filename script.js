@@ -9,7 +9,7 @@ let yearShown = false;
 
 // --- TEST-EINSTELLUNGEN ---
 const DEBUG_ALLOW_ALL = false;        // Auf 'true' setzen, um Datumssperre zu umgehen
-const RESET_STORAGE_ON_START = false; // Auf 'true' setzen, um den Speicher bei jedem Laden zu leeren
+const RESET_STORAGE_ON_START = true; // Auf 'true' setzen, um den Speicher bei jedem Laden zu leeren
 
 // Falls der Test-Reset aktiv ist, Speicher für den Kalender vorab löschen
 if (RESET_STORAGE_ON_START) {
