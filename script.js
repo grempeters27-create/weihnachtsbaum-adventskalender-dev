@@ -9,60 +9,15 @@ let yearShown = false;
 
 // --- TEST-EINSTELLUNGEN ---
 const DEBUG_ALLOW_ALL = false;        // Auf 'true' setzen, um Datumssperre zu umgehen
-const RESET_STORAGE_ON_START = true; // Auf 'true' setzen, um den Speicher bei jedem Laden zu leeren
+const RESET_STORAGE_ON_START = false; // Auf 'true' setzen, um den Speicher bei jedem Laden zu leeren
 
 // Falls der Test-Reset aktiv ist, Speicher für den Kalender vorab löschen
 if (RESET_STORAGE_ON_START) {
 	localStorage.removeItem("openedAdventsDoors");
 }
 
-const images = [
-	"images/1-2009.jpg",
-	"images/2-2020.jpg",
-	"images/3-2006.jpg",
-	"images/4-2016.jpg",
-	"images/5-2014.jpg",
-	"images/6-200x.jpg",
-	"images/7-2008.jpg",
-	"images/8-2006.jpg",
-	"images/9-2013.jpg",
-	"images/10-2011.jpg",
-	"images/11-2015.jpg",
-	"images/12-200x.jpg",
-	"images/13-2007.jpg",
-	"images/14-2007.jpg",
-	"images/15-2022.jpg",
-	"images/16-2024.jpg",
-	"images/17-2017.jpg",
-	"images/18-2009.jpg",
-	"images/19-2021.jpg",
-	"images/20-2025.jpg",
-	"images/21-2019.jpg",
-	"images/22-2021.jpg",
-	"images/23-202x.jpg",
-	"images/24-2016.jpg"
-];
-
-// --- ZUFÄLLIGE, ABER PERMANENT GLEICHE REIHENFOLGE GENERIEREN ---
-// Fester Startwert (Seed) sorgt dafür, dass die Mischung auf allen Geräten identisch ist
-function seededRandom(seed) {
-	let x = Math.sin(seed++) * 10000;
-	return x - Math.floor(x);
-}
-
-// Erstelle ein Indizes-Array [0, 1, 2, ..., 23]
-const doorOrder = Array.from({ length: images.length }, (_, i) => i);
-
-// Fisher-Yates-Shuffle mit determiniertem Zufall (Seed = 12345)
-let currentSeed = 12345;
-for (let i = doorOrder.length - 1; i > 0; i--) {
-	const j = Math.floor(seededRandom(currentSeed++) * (i + 1));
-	[doorOrder[i], doorOrder[j]] = [doorOrder[j], doorOrder[i]];
-}
-
 // 1. Bereits geöffnete Türchen aus dem localStorage abrufen
 const openedDoors = JSON.parse(localStorage.getItem("openedAdventsDoors") || "[]");
-
 // Funktion zur Prüfung, ob ein Türchen bereits geöffnet werden darf
 function isDoorAllowed(day) {
 	if (DEBUG_ALLOW_ALL) return true;
