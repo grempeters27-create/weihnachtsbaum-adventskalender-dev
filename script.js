@@ -9,7 +9,7 @@ let yearShown = false;
 
 // --- TEST-EINSTELLUNGEN ---
 const DEBUG_ALLOW_ALL = false;        // Auf 'true' setzen, um Datumssperre zu umgehen
-const RESET_STORAGE_ON_START = true; // Auf 'true' setzen, um den Speicher bei jedem Laden zu leeren
+const RESET_STORAGE_ON_START = false; // Auf 'true' setzen, um den Speicher bei jedem Laden zu leeren
 
 // Falls der Test-Reset aktiv ist, Speicher für den Kalender vorab löschen
 if (RESET_STORAGE_ON_START) {
@@ -57,7 +57,7 @@ function isDoorAllowed(day) {
 	const currentDate = today.getDate();
 
 	// Darf nur im Dezember und erst ab dem jeweiligen Tag geöffnet werden
-	return currentMonth === 9-1 && currentDate >= day;
+	return currentMonth === 10-1 && currentDate >= day;
 }
 
 // Kalender-Türchen generieren
