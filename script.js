@@ -56,7 +56,7 @@ function isDoorAllowed(day) {
 	const currentMonth = today.getMonth(); // 0 = Januar, 11 = Dezember
 	const currentDate = today.getDate();
 
-	// Darf nur im Dezember und erst ab dem jeweiligen Tag geöffnet werden
+	// Darf nur im Dezember (12-1) und erst ab dem jeweiligen Tag geöffnet werden
 	return currentMonth === 10-1 && currentDate >= day;
 }
 
