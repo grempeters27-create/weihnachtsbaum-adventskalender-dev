@@ -1,0 +1,135 @@
+body {
+	font-family: Georgia, serif;
+	background: radial-gradient(circle at top, #284030 0%, #0f1a14 70%);
+	color: white;
+	margin: 0;
+	min-height: 100vh;
+}
+
+header {
+	text-align: center;
+	padding: 40px 20px;
+}
+
+/* Responsives Grid für den Kalender */
+.calendar {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 20px;
+}
+
+.card {
+	background: rgba(255, 255, 255, 0.08);
+	border-radius: 20px;
+	padding: 20px;
+	cursor: pointer;
+	transition: transform 0.3s;
+}
+
+.card:hover {
+	transform: scale(1.02);
+}
+
+.day {
+	font-size: 1.4rem;
+	color: #ffe7a3;
+}
+
+/* Bild-Vorschau in der Karte (smoother Übergang statt starrer Höhe) */
+.preview {
+	margin-top: 15px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease, opacity 0.5s ease;
+	opacity: 0;
+}
+
+.card.opened .preview {
+	max-height: 400px;
+	opacity: 1;
+}
+
+.preview img {
+	width: 100%;
+	border-radius: 16px;
+}
+
+/* Overlay & Inhalt */
+.overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.9);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: 0.3s;
+	z-index: 1000;
+}
+
+.overlay.show {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.overlay-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	max-width: 90%;
+}
+
+.overlay img {
+	max-width: 100%;
+	max-height: 65vh; /* Genug Platz für Button & Text auf Smartphones */
+	border-radius: 24px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#yearButton {
+	background: #ffe7a3;
+	color: #0f1a14;
+	border: none;
+	padding: 12px 24px;
+	font-size: 1rem;
+	font-family: inherit;
+	border-radius: 30px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: transform 0.2s;
+}
+
+#yearButton:active {
+	transform: scale(0.95);
+}
+
+#yearText {
+	font-size: 1.2rem;
+	color: #ffe7a3;
+	min-height: 1.5rem;
+}
+
+/* --- SCHNEEFLOCKEN STYLES --- */
+.snowflake {
+	position: fixed;
+	top: -20px;
+	color: white;
+	font-family: Arial, sans-serif;
+	pointer-events: none;
+	z-index: 999;
+	animation: fall linear infinite; /* Unendliche Animation */
+}
+
+@keyframes fall {
+	0% {
+		transform: translateY(0) translateX(0) rotate(0deg);
+	}
+	100% {
+		transform: translateY(105vh) translateX(50px) rotate(360deg);
+	}
+}
